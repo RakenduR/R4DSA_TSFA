@@ -360,7 +360,7 @@ Before fitting forecasting models, it is a good practice to analysis the time se
 
 .pull-left[
 ```{r fig.height=6}
-tsbl_longer %>%
+vietnam_train %>%
   filter(`Country` == "Vietnam") %>%
   model(stl = STL(Arrivals)) %>%
   components() %>%
@@ -371,8 +371,14 @@ tsbl_longer %>%
 --
 .pull-right[
 ```{r fig.height=6}
-tsbl_longer %>%
-  filter(`Country` == "Australia") %>%
+aus_ts <- tsbl_longer %>%
+  filter(`Country` == "Australia") 
+
+aus_train <- aus_ts %>%
+  filter(`Month-Year` < "2019-01-01")
+
+
+aus_train%>%
   model(stl = STL(Arrivals)) %>%
   components() %>%
   autoplot()
@@ -583,7 +589,7 @@ In the code chunk below, `forecast()` of **fable** package is used to forecast t
 ```{r fig.height=3}
 fit_autoETS %>%
   forecast(h = "12 months") %>%
-  autoplot(vietnam_train)
+  autoplot(vietnam_ts)
 ```
 
 ---
