@@ -1,2 +1,2 @@
 # R4DSA_TSFA
-Time Series Analysis using R
+This Repository is the stash for Time Series Analysis using R
